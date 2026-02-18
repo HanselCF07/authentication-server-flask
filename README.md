@@ -69,8 +69,9 @@
     }
 
 # Test API
-    curl -X POST http://<ip-or-domain>/api/v1/authentication/user/login \
-    -H "Content-Type: application/json" \
+    curl -X POST https://api.ejemplo.com \
+     -H "Content-Type: application/json" \
+     -d '{"username": "usuario1", "password": "password1"}'
 
 
 # Port forwarding (Fastest for testing)
@@ -78,4 +79,4 @@
 
 
 # Script for MAP DB MODEL
-    flask-sqlacodegen --flask --outfile user.py --schema "vg_store" --tables "user" postgresql+psycopg2://dev_user:dev_123@192.168.1.47:5432/db_store
+    flask-sqlacodegen --flask --outfile FILE_NAME.py --schema "SCHEMA_NAME" --tables "TABLE_NAME" postgresql+psycopg2://User:Password@IP:PORT/DB
