@@ -1,22 +1,22 @@
 # Run With: Python 3.14.3 Version
 
-# authentication_server_example
-    Python Flask - authentication server example
+# authentication-server-flask
+    Python Flask - authentication server flask
 
 
 
 # Build the image (Docker slim images by default expose port 8000; use the `--no-cache` command to avoid affecting the image's base configuration)
-    docker build --no-cache -t authentication-server-example:v1 .
+    docker build --no-cache -t authentication-server-flask:v1 .
 
 # Inspect Docker Img
-    docker inspect authentication-server-example:v1 | grep ExposedPorts -A 5
+    docker inspect authentication-server-flask:v1 | grep ExposedPorts -A 5
 
 # Run Docker img
-    docker run -d -p 5000:5000 authentication-server-example:v1
+    docker run -d -p 5000:5000 authentication-server-flask:v1
 
 # Run the container in localhost:8000 and inject environment variables
 # Remember to create a file with the environment variables used in the App Configuration
-    docker run -d -p 5000:5000 --env-file .env authentication-server-example:v1
+    docker run -d -p 5000:5000 --env-file .env authentication-server-flask:v1
 
 
 
@@ -30,9 +30,9 @@
     minikube image ls
 
 # Upload the image directly to the cluster (without registry)
-    minikube image load authentication-server-example:v1  # Si usas Minikube
+    minikube image load authentication-server-flask:v1  # Si usas Minikube
     
-    kind load docker-image authentication-server-example:v1 # Si usas Kind
+    kind load docker-image authentication-server-flask:v1 # Si usas Kind
 
 
 

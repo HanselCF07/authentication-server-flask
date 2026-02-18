@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: authentication-server-example-ingress
+  name: authentication-server-flask-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -13,7 +13,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: authentication-server-example-service
+            name: authentication-server-flask-service
             port:
               number: 5000
 

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: authentication-server-example
+  name: authentication-server-flask
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: authentication-server-example
+      app: authentication-server-flask
   template:
     metadata:
       labels:
-        app: authentication-server-example
+        app: authentication-server-flask
     spec:
       containers:
-      - name: authentication-server-example
-        image: authentication-server-example:v1
+      - name: authentication-server-flask
+        image: authentication-server-flask:v1
         ports:
         - containerPort: 5000
         # env:

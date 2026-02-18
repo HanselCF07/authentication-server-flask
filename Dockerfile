@@ -4,7 +4,7 @@ FROM python:3.14-slim
 LABEL org.opencontainers.image.authors="hansel_prins10@hotmail.com"
 
 # Definir el directorio de trabajo
-WORKDIR /authentication_server_example
+WORKDIR /authentication-server-flask
 
 # Copiar primero requirements para aprovechar el caché
 COPY requirements.txt .
