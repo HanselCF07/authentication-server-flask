@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication-server-example
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: authentication-server-example
+  template:
+    metadata:
+      labels:
+        app: authentication-server-example
+    spec:
+      containers:
+      - name: authentication-server-example
+        image: authentication-server-example:v1
+        ports:
+        - containerPort: 5000
+        # env:
+        # - name: FLASK_ENV
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: flask-config
+        #       key: FLASK_ENV
+        # - name: DATABASE_URL
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: flask-config
+        #       key: DATABASE_URL
+        # - name: SECRET_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: flask-secret
+        #       key: SECRET_KEY
