@@ -9,7 +9,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /api/v1/vg-hc-store/authentication
         pathType: Prefix
         backend:
           service:
