@@ -36,7 +36,6 @@
 
 
 
-
 # Create Deployment and Service
     kubectl apply -f k8s-deployment.yaml
     kubectl apply -f k8s-service.yaml
@@ -54,7 +53,6 @@
 
 
 
-
 # Remember to modify the nginx configuration to send requests to the cluster's Ingress server.
     server {
         listen 80;
@@ -69,9 +67,9 @@
     }
 
 # Test API
-    curl -X POST https://api.ejemplo.com \
-     -H "Content-Type: application/json" \
-     -d '{"username": "usuario1", "password": "password1"}'
+curl -X POST https://localhost/api/v1/vg-hc-store/authentication/user/login \
+-H "Content-Type: application/json" \
+-d '{"username":"User", "password": "PassWord"}'
 
 
 # Port forwarding (Fastest for testing)
