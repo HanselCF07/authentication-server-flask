@@ -3,6 +3,8 @@ from flask import request, jsonify, make_response
 from flask.views import MethodView
 from flask_jwt_extended import create_access_token, get_jwt, set_access_cookies, unset_jwt_cookies
 from marshmallow import Schema, fields, ValidationError
+from src.utils.utilMethods import Methods as util
+from src.utils.utilStrings import Messages
 from src.models import user, customer, profile, role, user_status
 import re, uuid
 
@@ -94,7 +96,11 @@ class Login(MethodView):
                 additional_claims={"key": user["user_public_key"]}
             )
 
-            response = make_response(jsonify({"message": "Login successful"}), 200)
+            json_data = {
+                "username": user["username"],
+                "name": user["name"]
+            }
+            response = util.jsonResponseDefinition(json_data, Messages.SUCCESFUL_RESPONSE, 200)
             
             # Se recomienda el esquema 'Bearer' por estándar
             response.headers["Authorization"] = f"Bearer {access_token}"
@@ -121,11 +127,20 @@ def validate_user(username, password):
     try:
         # Aquí iría la consulta a BD para obtener el usuario por username
         verify_user = user.User.query.filter_by(username=username, record_status=1).first()
-
         if not verify_user:
             return None
+        
+        verify_customer = customer.Customer.query.filter_by(user_id=verify_user.user_id, record_status=1).first()
+        if not verify_customer:
+            return None
+
         if bcrypt.check_password_hash(verify_user.password, password):
-            return {"username": verify_user.username, "user_public_key": verify_user.user_public_key, "role": verify_user.role.name}
+            return {
+                "username": verify_user.username,
+                "user_public_key": verify_user.user_public_key,
+                "role": verify_user.role.name,
+                "name": verify_customer.name
+            }
 
         return None
     except Exception as e:
