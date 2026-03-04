@@ -93,7 +93,11 @@ class Login(MethodView):
 
             access_token = create_access_token(
                 identity=user["user_public_key"],
-                additional_claims={"key": user["user_public_key"]}
+                additional_claims={
+                    "key": user["user_public_key"],
+                    "username": user["username"],
+                    "name": user["name"]
+                }
             )
 
             json_data = {
