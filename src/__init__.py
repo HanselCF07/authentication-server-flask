@@ -57,8 +57,7 @@ except ImportError:
     pass
 
 # Enable CORS for all routes, allowing requests from any origin. This is useful for enabling cross-origin requests in web applications, especially when the frontend and backend are hosted on different domains.
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
-
+cors = CORS(app, resources={r"/*": {"origins": "*"}}, expose_headers=["Authorization"])
 
 from src.models import  *
 from src.repository import *
